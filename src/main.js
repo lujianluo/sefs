@@ -1,42 +1,30 @@
 import Vue from 'vue';
 import App from './App.vue';
-import VueRouter from 'vue-router';
-import ART from './components/ART.vue'
-import TECH from './components/TECH.vue'
+import router from "./router/router";
+import firebase from "firebase/app";
 import ElementUI from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/en';
 import 'element-ui/lib/theme-chalk/index.css';
 import './plugins/element.js';
-import Home from './components/Home.vue';
-import About_us from './components/About_us.vue'
-import Header from './components/Header.vue'
-import ProductPage from './components/ProductPage.vue'
-import Userinfo from './components/Userinfo.vue'
-//import router from './router.js'
-Vue.use(ElementUI, { locale })
-Vue.config.productionTip = false
-Vue.use(ElementUI);
-Vue.use(VueRouter)
-Vue.component('aHeader', Header)
-Vue.component('aAbout_us', About_us)
+//import { auth } from './firebase';
 
-const routes = [
-  {path: '/Home', component: Home},
-  {path: '/', component: Home},
-  {path: '/About_us', component: About_us},
-  {path: '/TECH', component: TECH},
-  {path: '/ART', component: ART},
-  {path: '/ProductPage', component: ProductPage},
-  {path: '/Userinfo', component: Userinfo}
-];
 
-const router = new VueRouter({
-  routes,
-  mode: 'history'
-})
+Vue.use(ElementUI, { locale });
+Vue.config.productionTip = false;
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAhitrrZx8RYkLR5kwC7gH_a3C36Ihklos",
+  authDomain: "ad-project-9ed24.firebaseapp.com",
+  databaseURL: "https://ad-project-9ed24.firebaseio.com",
+  projectId: "ad-project-9ed24",
+  storageBucket: "ad-project-9ed24.appspot.com",
+  messagingSenderId: "1000226156535",
+  appId: "1:1000226156535:web:fe1be0a2b5783c9a4fc8f2"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 new Vue({
-  Home,
-  router,
-  render: h => h(App)
-}).$mount('#app');
+   router,
+   render: h => h(App)
+ }).$mount("#app");

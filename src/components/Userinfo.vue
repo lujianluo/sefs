@@ -7,6 +7,7 @@
           </el-header>
             <el-container class="abc">
              <el-main style="background-color: blue">
+              <button @click="abc">abc</button>
              </el-main>
              <el-main style="background-color: green">
              </el-main>
@@ -18,10 +19,20 @@
 </template>
 
 <script>
+import * as firebase from "firebase/app";
+import "firebase/auth";
 export default {
   data() {
     return {
      
+    }
+  },
+  methods:{
+    abc(){
+      const h = firebase.auth().currentUser.displayName
+      this.$notify({
+          title: h,
+        });
     }
   }
 }

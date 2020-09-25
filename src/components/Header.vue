@@ -17,6 +17,7 @@
                 <template slot="title" ><i class="el-icon-user"></i>Account</template>
                 <el-menu-item index="/Userinfo"><i class="el-icon-info"></i>UserI nfo</el-menu-item>
                 <el-menu-item index="/Liked"><i class="el-icon-star-on"></i>Liked Project</el-menu-item>
+                <el-menu-item @click="Logout">Log Out</el-menu-item>
                 </el-submenu>
             </el-menu>
             </div>
@@ -25,13 +26,42 @@
 </template>
 
 <script>
+import * as firebase from "firebase/app";
+import "firebase/auth";
 export default {
+  name: "Header",
+  mounted() {
+    this.setupFirebase();
+  },
+  methods: {
+    setupFirebase() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in.
+          console.log("signed in");
+          this.loggedIn = true;
+        } else {
+          // No user is signed in.
+          this.loggedIn = false;
+          console.log("signed out", this.loggedIn);
+        }
+      });
+    },
+    Logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({ name: "Home" });
+        });
+    }
+  },
   data() {
     return {
-      input: ''
-    }
+      loggedIn: false
+    };
   }
-}
+};
 </script>
 
 <style scoped>

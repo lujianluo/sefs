@@ -6,7 +6,11 @@
 </template>
 
 <script>
+import Header from './components/Header.vue';
 export default {
+  components: {
+    "aHeader": Header
+  },
   data(){
     return {
 
@@ -16,4 +20,5 @@ export default {
 </script>
 
 <style>
+
 </style>
