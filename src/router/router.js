@@ -9,7 +9,8 @@ import Userinfo from '../components/Userinfo.vue';
 import Liked from '../components/Liked.vue';
 import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
-import test from '../components/test.vue';
+import Upload from '../components/Upload.vue';
+import Mypost from '../components/Mypost.vue';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
@@ -24,10 +25,10 @@ const routes = [
     {path: '/ProductPage', name:"ProductPage", component: ProductPage},
     {path: '/Userinfo', name:"Userinfo", component: Userinfo, meta: { requiresAuth: true }},
     {path: '/Liked', name:"Liked", component: Liked, meta: { requiresAuth: true }},
-    {path: '/Login', name:"Login", component: Login},
-    {path: '/Register', name:"Register", component: Register},
-    {path: '/test', name:"test", component: test},
-
+    {path: '/Login', name:"Login", component: Login, Register,meta: {hideForAuth: true}},
+    {path: '/Register', name:"Register", component: Register,meta: {hideForAuth: true}},
+    {path: '/Upload', name:"Upload", component: Upload, meta: { requiresAuth: true }},
+    {path: '/Mypost', name:"Mypost", component: Mypost, meta: { requiresAuth: true }},
   ];
   
   const router = new VueRouter({
@@ -36,14 +37,27 @@ const routes = [
   });
 
   router.beforeEach((to, from, next) => {
-    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-    const isAuthenticated = firebase.auth().currentUser;
-    console.log("isauthenticated", isAuthenticated);
-    if (requiresAuth && !isAuthenticated) {
-      next("/Login");
-    } else {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (to.matched.some(record => record.meta.requiresAuth)) {
+          if (!user) {
+              next({ path: '/Login' });
+          } else {
+              next();
+          }
+
+      } else {
+          next();
+      }
+    if (to.matched.some(record => record.meta.hideForAuth)) {
+      if (user) {
+          next({ path: '/Userinfo' });
+      } else {
+          next();
+      }
+  } else {
       next();
-    }
+  }
+});
   });
   
   export default router;

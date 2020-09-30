@@ -4,7 +4,7 @@
             <img src="../assets/Title.png">
             </div>
             <div id="Navi">
-            <el-menu :default-active="$route.name" router class="menu" mode="horizontal" @select="handleSelect" :unique-opened="true"
+            <el-menu :default-active="$route.name" router class="menu" mode="horizontal" :unique-opened="true"
             background-color="#2C3539" text-color="#fff" active-text-color="#FBB917" >       
                 <el-menu-item index="/Home">Home</el-menu-item>
                     <el-submenu index="0">
@@ -15,9 +15,12 @@
                     <el-menu-item index="/About_us">About us</el-menu-item>
                 <el-submenu index="1" style="position: absolute; right: 0">
                 <template slot="title" ><i class="el-icon-user"></i>Account</template>
-                <el-menu-item index="/Userinfo"><i class="el-icon-info"></i>UserI nfo</el-menu-item>
+                <el-menu-item index="/Login"><i class="el-icon-user"></i>Log In</el-menu-item>
+                <el-menu-item index="/Userinfo"><i class="el-icon-s-data"></i>UserI nfo</el-menu-item>
+                <el-menu-item index="/Mypost"><i class="el-icon-s-flag"></i>Mypost</el-menu-item>
                 <el-menu-item index="/Liked"><i class="el-icon-star-on"></i>Liked Project</el-menu-item>
-                <el-menu-item @click="Logout">Log Out</el-menu-item>
+                <el-menu-item index="/Upload"><i class="el-icon-upload2"></i>Upload</el-menu-item>
+                <el-menu-item index="/Logout" @click="Logout"><i class="el-icon-user"></i>Log Out</el-menu-item>
                 </el-submenu>
             </el-menu>
             </div>
@@ -30,6 +33,11 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 export default {
   name: "Header",
+  data() {
+    return {
+      loggedIn: false
+    };
+  },
   mounted() {
     this.setupFirebase();
   },
@@ -56,11 +64,6 @@ export default {
         });
     }
   },
-  data() {
-    return {
-      loggedIn: false
-    };
-  }
 };
 </script>
 
@@ -76,7 +79,5 @@ export default {
 .el-input{
   width:150%;
 }
-.el-header{
-  background-color: darkcyan
-}
+
 </style>
