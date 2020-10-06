@@ -1,5 +1,5 @@
 <template>
-  <div>
+<div>
     <div >
       <p>Upload an image to Firebase:</p>
       <input type="file" @change="previewImage" accept="image/*" >
@@ -8,16 +8,13 @@
       <p>Progress: {{uploadValue.toFixed()+"%"}}
       <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
     </div>
-    <div v-if="imageData!=null">
-        <img class="preview" :src="picture">
-        <br>
-      <button @click="onUpload">Upload</button>
-    </div>
+      <el-button type="primary" @click="onUpload">Upload</el-button>
+    
   </div>
 </template>
 
 <script>
-import firebase from 'firebase';
+ import {fb, db} from '../firebase'
 
 export default {
   name: 'Upload',
@@ -25,19 +22,20 @@ export default {
 	return{
       imageData: null,
       picture: null,
-      uploadValue: 0
+      uploadValue: 0,
 	}
   },
+  
   methods:{
     previewImage(event) {
       this.uploadValue=0;
       this.picture=null;
       this.imageData = event.target.files[0];
-    },
-
-    onUpload(){
+    },  
+    
+     async onUpload(){
       this.picture=null;
-      const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+      const storageRef=fb.storage().ref(`${this.imageData.name}`).put(this.imageData);
       storageRef.on(`state_changed`,snapshot=>{
         this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, error=>{console.log(error.message)},
@@ -47,14 +45,30 @@ export default {
         });
       }
       );
+      const result = db.collection("statistics").doc("postID").get()
+      .then(function(doc) {
+    if (doc.exists) {
+        db.collection("statistics").doc("postID").update({
+          postIDcount: newID
+        })
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch(function(error) {
+    console.log("Error getting document:", error);
+});
+
     }
 
   }
 }
 </script>
 
+
+
+
+
 <style scoped>
-img.preview {
-    width: 200px;
-}
+
 </style>
