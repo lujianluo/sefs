@@ -1,31 +1,38 @@
 <template>
-<el-container>
-  <el-header><div class = "ProductPageimg">
-            <img recommend src="../assets/ProductPage.png" >
-            </div>
-  </el-header>
-
-</el-container>
+<div>
+  <div v-for="post in posts" :key="post">
+    <div v-for="attributes in post" :key="attributes" >
+      <div v-if="attributes == newID">
+        <img :src = "post.postUrl"><br><br>
+        <span>Post Name:<br>{{post.postName}}</span><br><br>
+        <span>Fund Needed:<br>{{post.postFund}}</span><br><br>
+        <span>Post Description:<br>{{post.postDescription}}</span><br><br>
+        
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
-  export default {
-    methods: {
-      goBack() {
-        console.log('go back');
+import { db,} from '../firebase';
+
+export default{
+firestore(){
+      return {
+        posts: db.collection('posts'),
+        userdata: db.collection('userdata')
+
       }
+},
+  data(){
+    return{
+      newID: this.$route.params.postName,
     }
   }
+}
 </script>
 
 <style scoped>
-.el-page-header{
-    background-color: chartreuse;
-    height: 50px;
-         
-}
-.ProductPageimg{
-  display: flex;
-  justify-content:center;
-}
+
 </style>

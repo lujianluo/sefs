@@ -9,8 +9,12 @@
                 <el-menu-item index="/Home">Home</el-menu-item>
                     <el-submenu index="0">
                     <template slot="title">Category</template>
+                    <el-menu-item index="/All_category">All Categories</el-menu-item>
                     <el-menu-item index="/TECH">TECH</el-menu-item>
                     <el-menu-item index="/ART">ART</el-menu-item>
+                    <el-menu-item index="/History">History</el-menu-item>
+                    <el-menu-item index="/Geography">Geography</el-menu-item>
+                    <el-menu-item index="/Computer_science">Computer science</el-menu-item>
                     </el-submenu>
                     <el-menu-item index="/About_us">About us</el-menu-item>
                 <el-submenu index="1" style="position: absolute; right: 0">

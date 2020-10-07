@@ -11,6 +11,7 @@ import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
 import Upload from '../components/Upload.vue';
 import Mypost from '../components/Mypost.vue';
+import All_category from '../components/All_category.vue';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
@@ -22,13 +23,14 @@ const routes = [
     {path: '/About_us', name:"About_us", component: About_us},
     {path: '/TECH', name:"TECH", component: TECH},
     {path: '/ART', name:"ART", component: ART},
-    {path: '/ProductPage', name:"ProductPage", component: ProductPage},
+    {path: '/ProductPage/:postName', name:"ProductPage", component: ProductPage},
     {path: '/Userinfo', name:"Userinfo", component: Userinfo, meta: { requiresAuth: true }},
     {path: '/Liked', name:"Liked", component: Liked, meta: { requiresAuth: true }},
     {path: '/Login', name:"Login", component: Login, Register,meta: {hideForAuth: true}},
     {path: '/Register', name:"Register", component: Register,meta: {hideForAuth: true}},
     {path: '/Upload', name:"Upload", component: Upload, meta: { requiresAuth: true }},
     {path: '/Mypost', name:"Mypost", component: Mypost, meta: { requiresAuth: true }},
+    {path: '/All_category', name:"All_category", component: All_category,},
   ];
   
   const router = new VueRouter({

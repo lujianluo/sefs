@@ -4,7 +4,7 @@
             <img recommend src="../assets/TECHS.png" >
             </div>
   </el-header>
-  <el-container>
+  <el-container class="small">
     <el-aside width="300px">
         <div class ="filter">
         <span style="font-size: 50px">Filter</span>
@@ -20,18 +20,17 @@
         </div>
     </el-aside>
     <el-main>
-
     <div class="items">
     <el-row>
     <div class="box">
-    <el-col :span="4" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 2 : 0">
-    <el-card :body-style="{ padding: '0px' }">
-      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-      
-        <div class="bottom">
-          <el-button type="text" class="button">{{link}}</el-button>
+    <el-col :span="6" v-for="post in posts" :key="post" :offset="2" >
+    <el-card :body-style="{ padding: '0px'}" :key="post.postUrl">
+      <img :src="post.postUrl" class="image">
+      <div style="padding: 14px;">
+        <div class="bottom clearfix">
+          <el-button type="text" class="button" :key="post.postName" @click="detailpage(post.postName)">{{post.postName}}</el-button>
         </div>
-      
+      </div>
     </el-card>
   </el-col>
     </div>
@@ -43,10 +42,24 @@
 </template>
 
 <script>
-export default {
+import { db,} from '../firebase';
 
+export default {
+data(){
+    return{
+        posts:[],
+ 
+    }
+},
+ firestore(){
+      return {
+        posts: db.collection('posts'),
+      }
+},
 methods: {
-  
+    detailpage(postName){
+        this.$router.push({name:'ProductPage', params:{postName: postName}})
+    }
 }
 }
 </script>
@@ -85,16 +98,18 @@ methods: {
   }
 
   .button {
+    font-size: 15px;
     padding: 0;
     float: right;
   }
 
   .image {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
     display: block;
+    margin: auto;
   }
-  .box{
-      padding-left: 100px;
-      padding-top: 80px;
-  }
+.small{
+    height: 500px
+}
 </style>
