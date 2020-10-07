@@ -6,7 +6,6 @@ import Home from '../components/Home.vue';
 import About_us from '../components/About_us.vue';
 import ProductPage from '../components/ProductPage.vue';
 import Userinfo from '../components/Userinfo.vue';
-import Liked from '../components/Liked.vue';
 import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
 import Upload from '../components/Upload.vue';
@@ -25,7 +24,6 @@ const routes = [
     {path: '/ART', name:"ART", component: ART},
     {path: '/ProductPage/:postName', name:"ProductPage", component: ProductPage},
     {path: '/Userinfo', name:"Userinfo", component: Userinfo, meta: { requiresAuth: true }},
-    {path: '/Liked', name:"Liked", component: Liked, meta: { requiresAuth: true }},
     {path: '/Login', name:"Login", component: Login, Register,meta: {hideForAuth: true}},
     {path: '/Register', name:"Register", component: Register,meta: {hideForAuth: true}},
     {path: '/Upload', name:"Upload", component: Upload, meta: { requiresAuth: true }},

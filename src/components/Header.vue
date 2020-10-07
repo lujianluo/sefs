@@ -22,7 +22,6 @@
                 <el-menu-item index="/Login"><i class="el-icon-user"></i>Log In</el-menu-item>
                 <el-menu-item index="/Userinfo"><i class="el-icon-s-data"></i>UserI nfo</el-menu-item>
                 <el-menu-item index="/Mypost"><i class="el-icon-s-flag"></i>Mypost</el-menu-item>
-                <el-menu-item index="/Liked"><i class="el-icon-star-on"></i>Liked Project</el-menu-item>
                 <el-menu-item index="/Upload"><i class="el-icon-upload2"></i>Upload</el-menu-item>
                 <el-menu-item index="/Logout" @click="Logout"><i class="el-icon-user"></i>Log Out</el-menu-item>
                 </el-submenu>
