@@ -5,16 +5,16 @@
             </div>
             <div id="Navi">
             <el-menu :default-active="$route.name" router class="menu" mode="horizontal" :unique-opened="true"
-            background-color="#2C3539" text-color="#fff" active-text-color="#FBB917" >       
+            background-color="#2C3539" text-color="#fff" active-text-color="#fff" >       
                 <el-menu-item index="/Home">Home</el-menu-item>
                     <el-submenu index="0">
                     <template slot="title">Category</template>
-                    <el-menu-item index="/All_category">All Categories</el-menu-item>
-                    <el-menu-item index="/TECH">TECH</el-menu-item>
-                    <el-menu-item index="/ART">ART</el-menu-item>
-                    <el-menu-item index="/History">History</el-menu-item>
-                    <el-menu-item index="/Geography">Geography</el-menu-item>
-                    <el-menu-item index="/Computer_science">Computer science</el-menu-item>
+                    <el-menu-item index="/Category/:newCategory" @click="toCategory('All')" >All Categories</el-menu-item>
+                    <el-menu-item index="/Category/:newCategory" @click="toCategory('TECH')" >TECH</el-menu-item>
+                    <el-menu-item index="/Category/:newCategory" @click="toCategory('ART')" >ART</el-menu-item>
+                    <el-menu-item index="/Category/:newCategory" @click="toCategory('History')" >History</el-menu-item>
+                    <el-menu-item index="/Category/:newCategory" @click="toCategory('Geography')" >Geography</el-menu-item>
+                    <el-menu-item index="/Category/:newCategory" @click="toCategory('Computer Science')">Computer science</el-menu-item>
                     </el-submenu>
                     <el-menu-item index="/About_us">About us</el-menu-item>
                 <el-submenu index="1" style="position: absolute; right: 0">
@@ -65,8 +65,12 @@ export default {
         .then(() => {
           this.$router.replace({ name: "Home" });
         });
+    },
+    toCategory(newCategory){
+      this.$router.push({name:'Category', params:{newCategory: newCategory}})
     }
   },
+
 };
 </script>
 

@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import ART from '../components/ART.vue';
-import TECH from '../components/TECH.vue';
+import Category from '../components/Category.vue';
 import Home from '../components/Home.vue';
 import About_us from '../components/About_us.vue';
 import ProductPage from '../components/ProductPage.vue';
@@ -10,7 +9,6 @@ import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
 import Upload from '../components/Upload.vue';
 import Mypost from '../components/Mypost.vue';
-import All_category from '../components/All_category.vue';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
@@ -20,15 +18,13 @@ const routes = [
     {path: '/Home', name:"Home", component: Home},
     {path: '/', component: Home},
     {path: '/About_us', name:"About_us", component: About_us},
-    {path: '/TECH', name:"TECH", component: TECH},
-    {path: '/ART', name:"ART", component: ART},
     {path: '/ProductPage/:postName', name:"ProductPage", component: ProductPage},
     {path: '/Userinfo', name:"Userinfo", component: Userinfo, meta: { requiresAuth: true }},
     {path: '/Login', name:"Login", component: Login, Register,meta: {hideForAuth: true}},
     {path: '/Register', name:"Register", component: Register,meta: {hideForAuth: true}},
     {path: '/Upload', name:"Upload", component: Upload, meta: { requiresAuth: true }},
     {path: '/Mypost', name:"Mypost", component: Mypost, meta: { requiresAuth: true }},
-    {path: '/All_category', name:"All_category", component: All_category,},
+    {path: '/Category/:newCategory', name:"Category", component: Category, props: true},
   ];
   
   const router = new VueRouter({

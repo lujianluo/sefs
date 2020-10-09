@@ -4,8 +4,8 @@
             <img recommend src="../assets/recommend.png" >
             </div>
             <el-carousel :interval="4000" type="card" height="500px">
-            <el-carousel-item v-for="item in imgList" :key="item">
-            <h3><img :src="item" alt=""></h3>
+            <el-carousel-item v-for="post in posts" :key="post">
+            <h3><img :src="post.postUrl" alt=""></h3>
             </el-carousel-item>
             </el-carousel>
         </el-main>
@@ -13,17 +13,24 @@
 
 
 <script>
+import { db,} from '../firebase';
 export default {
+ firestore(){
+      return {
+        posts: db.collection('posts'),
+      }
+},
 data(){
 return {
 imgList: [
-      require('../assets/demo1.jpeg'),
-      require('../assets/demo2.jpeg'),
-      require('../assets/demo3.jpeg'),
-      require('../assets/demo4.jpeg'),
+        require('../assets/demo1.jpeg'),
+        require('../assets/demo2.jpeg'),
+        require('../assets/demo3.jpeg'),
+        require('../assets/demo4.jpeg'),
     ]
 }
-}
+},
+
 }
 </script>
 

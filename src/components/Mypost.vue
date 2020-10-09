@@ -2,7 +2,14 @@
 <div>
     <div v-for="post in posts" :key="post">
         <div v-if="post.postOwner == uid">
-       <a @click="detailpage(post.postName)">{{post.postName}}</a><br><br><br>
+       <el-card :body-style="{ padding: '0px'}" :key="post.postUrl">
+      <img :src="post.postUrl" class="image">
+      <div style="padding: 14px;">
+        <div class="bottom clearfix">
+          <el-button type="text" class="button"  @click="detailpage(post.postName)">{{post.postName}}</el-button>
+     </div>
+      </div>
+    </el-card>
         </div>
     </div>
 </div>

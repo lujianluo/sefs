@@ -60,7 +60,7 @@ export default {
       imageData: null,
       postName: '',
       postDescription: '',
-      postFund: '',
+      postFund: 0,
       picture: null,
 	}
   },
