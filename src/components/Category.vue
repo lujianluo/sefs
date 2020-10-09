@@ -35,8 +35,7 @@
       </div>
     </div>
     <div v-else>
-    <div v-for="attribute in post" :key="attribute">
-      <div v-if="attribute == newC">
+      <div v-if="post.postCategory == newC">
         <div v-if="post.postFund < radio1">
     <el-card :body-style="{ padding: '0px'}" :key="post.postUrl">
       <img :src="post.postUrl" class="image">
@@ -46,7 +45,6 @@
         </div>
       </div>
     </el-card>
-      </div>
       </div>
     </div>
     </div>

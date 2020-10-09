@@ -41,18 +41,14 @@ const routes = [
               next();
           }
 
-      } else {
-          next();
-      }
+      } 
     if (to.matched.some(record => record.meta.hideForAuth)) {
       if (user) {
           next({ path: '/Userinfo' });
       } else {
           next();
       }
-  } else {
-      next();
-  }
+  } 
 });
   });
   

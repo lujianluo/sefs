@@ -82,7 +82,7 @@ export default {
             postFund: this.postFund,
             postDescription: this.postDescription,
             postOwner: firebase.auth().currentUser.uid,
-            postGategory: this.value,
+            postCategory: this.value,
             postUrl: this.picture
         });
         });
