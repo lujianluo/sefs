@@ -39,7 +39,8 @@ const routes = [
               next({ path: '/Login' });
           } else {
               next();
-          }
+          }} else {
+            next();
 
       } 
     if (to.matched.some(record => record.meta.hideForAuth)) {

@@ -23,10 +23,7 @@ export default {
 data(){
 return {
 imgList: [
-        require('../assets/demo1.jpeg'),
-        require('../assets/demo2.jpeg'),
-        require('../assets/demo3.jpeg'),
-        require('../assets/demo4.jpeg'),
+
     ]
 }
 },
